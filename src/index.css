@@ -6,18 +6,23 @@
     --dark: rgba(36, 35, 32, 100%);
     --light: rgba(255, 255, 255, 100%);
     --grey: rgba(36, 35, 32, 7.5%);
-    --accentFaded: rgba(242, 67, 51, 15%);
+    --accent: rgba(242, 67, 51, 100%);
+    --accentFaded: rgba(242, 67, 51, 25%);
 }
 
 @layer base {
     body {
-        margin: 0;
-        padding: 0;
-        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-        font-synthesis: none;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        box-sizing: border-box;
+        @apply w-screen h-screen p-3 m-0 box-border text-dark bg-bg bg-contain overflow-hidden;
+    }
+}
+
+@layer components {
+    .customScrollbar::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .customScrollbar::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background-color: var(--accentFaded);
     }
 }
