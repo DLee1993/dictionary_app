@@ -11,15 +11,14 @@ export default {
     theme: {
         extend: {
             backgroundImage: {
-                bg: "url('/BG.webp')"
+                bg: "url('/BG.webp')",
             },
             colors: {
-                dark: "var(--dark)",
-                light: "var(--light)",
-                grey: "var(--grey)",
-                accent: "var(--accent)",
-                accentFaded: "var(--accentFaded)",
-            }
+                dark: "rgb(36, 35, 32)",
+                light: "rgb(255, 255, 255)",
+                grey: "rgb(36, 35, 32)",
+                accent: "rgb(242, 67, 51)",
+            },
         },
     },
     darkMode: "class",

@@ -2,27 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --dark: rgba(36, 35, 32, 100%);
-    --light: rgba(255, 255, 255, 100%);
-    --grey: rgba(36, 35, 32, 7.5%);
-    --accent: rgba(242, 67, 51, 100%);
-    --accentFaded: rgba(242, 67, 51, 25%);
-}
-
 @layer base {
     body {
-        @apply w-screen h-screen p-3 m-0 box-border text-dark bg-bg bg-contain overflow-hidden;
+        @apply min-h-screen p-0 m-0 box-border text-dark bg-light dark:text-light dark:bg-dark;
     }
-}
-
-@layer components {
-    .customScrollbar::-webkit-scrollbar {
+    body::-webkit-scrollbar {
         width: 10px;
     }
-
-    .customScrollbar::-webkit-scrollbar-thumb {
+    body::-webkit-scrollbar-thumb {
         border-radius: 2px;
-        background-color: var(--accentFaded);
+        background-color: rgb(242, 67, 51);
     }
 }
