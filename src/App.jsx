@@ -242,7 +242,7 @@ function App() {
                                                     <div className="flex flex-col gap-y-2">
                                                         {def.definition}
                                                         {def.example && (
-                                                            <span className="text-dark/50">{`"${def.example}"`}</span>
+                                                            <span className="text-dark/45 dark:text-light/20">{`"${def.example}"`}</span>
                                                         )}
                                                     </div>
                                                 </li>
