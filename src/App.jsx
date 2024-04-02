@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Sun, Moon } from "./components/Icons";
+import { Sun, Moon, Play, Pause } from "./components/Icons";
 
 function App() {
     const [word, setWord] = useState("");
@@ -18,6 +18,7 @@ function App() {
     const [searchError, setSearchError] = useState();
     const [loader, setLoader] = useState(false);
     const [font, setFont] = useState("serif");
+    const [audioIcon, setAudioIcon] = useState(<Play />);
     const [isSelected, setIsSelected] = useState(false);
     const selectedValue = useMemo(() => Array.from(font).join("").replaceAll("_", " "), [font]);
 
@@ -59,6 +60,14 @@ function App() {
         audio.play();
     };
 
+    const IconSwitch = (bool) => {
+        if (bool) {
+            setAudioIcon(<Pause />);
+        } else {
+            setAudioIcon(<Play />);
+        }
+    };
+
     const themeSwitch = () => {
         setIsSelected(!isSelected);
         document.documentElement.classList.toggle("dark");
@@ -71,7 +80,7 @@ function App() {
         >
             <section className={`py-10 px-5 max-w-[900px] m-auto font-${font.currentKey || font}`}>
                 <header className="flex justify-between items-center">
-                    <a href="/">
+                    <a href="/dictionary_app/">
                         <h1 className="text-lg md:text-xl lg:text-2xl font-bold">wordup</h1>
                     </a>
                     <ul className="flex justify-center items-center gap-x-10">
@@ -184,28 +193,19 @@ function App() {
                             {searchResults?.audio ? (
                                 <aside className="w-20">
                                     <button
+                                        id="audioControl"
                                         className="grid place-items-center bg-accent/20 dark:bg-light/5 hover:bg-accent/50 dark:hover:bg-light/15 rounded-full w-14 md:w-16 h-14 md:h-16 disabled:bg-grey transition-colors group"
                                         onClick={playAudio}
                                         disabled={!searchResults?.audio}
                                     >
-                                        <svg
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-1/2 fill-accent group-disabled:fill-grey"
-                                        >
-                                            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                                            <g
-                                                id="SVGRepo_tracerCarrier"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            ></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <path d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"></path>{" "}
-                                            </g>
-                                        </svg>
+                                        {audioIcon}
                                     </button>
-                                    <audio src={searchResults?.audio} id="audio"></audio>
+                                    <audio
+                                        src={searchResults?.audio}
+                                        id="audio"
+                                        onPlay={() => IconSwitch(true)}
+                                        onPause={() => IconSwitch(false)}
+                                    ></audio>
                                 </aside>
                             ) : (
                                 loader && !searchError && <Skeleton />
