@@ -19,7 +19,6 @@ function App() {
     const [loader, setLoader] = useState(false);
     const [font, setFont] = useState("serif");
     const [isSelected, setIsSelected] = useState(false);
-
     const selectedValue = useMemo(() => Array.from(font).join("").replaceAll("_", " "), [font]);
 
     const wordSearch = async (e) => {
@@ -72,11 +71,13 @@ function App() {
         >
             <section className={`py-10 px-5 max-w-[900px] m-auto font-${font.currentKey || font}`}>
                 <header className="flex justify-between items-center">
-                    <h1 className="text-lg md:text-xl lg:text-2xl font-bold">wordup</h1>
+                    <a href="/">
+                        <h1 className="text-lg md:text-xl lg:text-2xl font-bold">wordup</h1>
+                    </a>
                     <ul className="flex justify-center items-center gap-x-10">
                         <Dropdown>
                             <DropdownTrigger>
-                                <Button variant="bordered" className="capitalize">
+                                <Button variant="bordered" className="capitalize" size="sm">
                                     {selectedValue}
                                 </Button>
                             </DropdownTrigger>
@@ -97,8 +98,9 @@ function App() {
                             <Switch
                                 isSelected={isSelected}
                                 onValueChange={themeSwitch}
+                                size="sm"
                                 classNames={{
-                                    wrapper: "group-data-[selected=true]:bg-light/30",
+                                    wrapper: "group-data-[selected=true]:bg-light/10",
                                     thumb: "group-data-[selected=true]:bg-accent",
                                 }}
                             >
@@ -122,14 +124,14 @@ function App() {
                                 isRequired
                                 onClear={() => setWord("")}
                                 classNames={{
-                                    inputWrapper: "py-0 min-h-unit-0 h-fit",
+                                    inputWrapper: "py-0 min-h-unit-0 h-fit dark:bg-light/5",
                                     innerWrapper: "h-fit flex justify-center items-center",
                                     label: "sr-only",
-                                    input: "text-base md:text-lg h-12 font-bold",
+                                    input: "text-base md:text-lg h-10 font-bold",
                                     clearButton: "m-0 top-1/2 -translate-y-1/2 text-accent",
                                 }}
                             />
-                            <button className="bg-accent rounded-xl w-14 grid place-items-center hover:bg-accent/65 transition-colors">
+                            <button className="bg-accent rounded-xl w-12 h-10 grid place-items-center hover:bg-accent/65 transition-colors">
                                 <svg
                                     viewBox="0 0 24 24"
                                     fill="none"
@@ -162,7 +164,7 @@ function App() {
                         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-accent">
                             Level up your knowledge of the english language.
                         </h1>
-                        <p className="text-dark/50 dark:text-light/30 text-sm">
+                        <p className="text-dark/50 dark:text-light/5 text-sm">
                             To get started, type a word in the search bar and press enter.
                         </p>
                     </div>
@@ -182,7 +184,7 @@ function App() {
                             {searchResults?.audio ? (
                                 <aside className="w-20">
                                     <button
-                                        className="grid place-items-center bg-accent/20 dark:bg-light/30 rounded-full w-14 md:w-16 h-14 md:h-16 disabled:bg-grey group"
+                                        className="grid place-items-center bg-accent/20 dark:bg-light/5 hover:bg-accent/50 dark:hover:bg-light/15 rounded-full w-14 md:w-16 h-14 md:h-16 disabled:bg-grey transition-colors group"
                                         onClick={playAudio}
                                         disabled={!searchResults?.audio}
                                     >
@@ -210,7 +212,7 @@ function App() {
                             )}
                         </section>
                         {searchResults?.source ? (
-                            <p className="flex justify-start items-center flex-wrap gap-x-2 py-5 text-dark/45 dark:text-light/20 font-bold">
+                            <p className="flex justify-start items-center flex-wrap gap-x-2 py-5 text-dark/50 dark:text-light/40 font-bold">
                                 Source:
                                 <span className="text-dark dark:text-accent font-normal">
                                     <a
@@ -233,7 +235,7 @@ function App() {
                                             {meaning.partOfSpeech}{" "}
                                             <div className="bg-grey/10 w-full h-[2px]"></div>
                                         </h2>
-                                        <p className="text-dark/45 dark:text-light/20 mt-5 font-bold">
+                                        <p className="text-dark/45 dark:text-light/40 mt-5 font-bold">
                                             Meaning
                                         </p>
                                         <ul className="ml-10 mt-10 space-y-2 list-disc">
@@ -242,7 +244,7 @@ function App() {
                                                     <div className="flex flex-col gap-y-2">
                                                         {def.definition}
                                                         {def.example && (
-                                                            <span className="text-dark/45 dark:text-light/20">{`"${def.example}"`}</span>
+                                                            <span className="text-dark/45 dark:text-light/40">{`"${def.example}"`}</span>
                                                         )}
                                                     </div>
                                                 </li>
@@ -251,17 +253,21 @@ function App() {
                                         {meaning.antonyms?.length > 0 && (
                                             <aside className="font-bold text-dark/45 dark:text-light/20 mt-10">
                                                 Antonyms:{" "}
-                                                <span className="text-accent">
-                                                    {meaning.antonyms}
-                                                </span>
+                                                {meaning.antonyms.map((ant, index) => (
+                                                    <span key={index} className="text-accent">
+                                                        {(index ? ", " : "") + ant}
+                                                    </span>
+                                                ))}
                                             </aside>
                                         )}
                                         {meaning.synonyms?.length > 0 && (
                                             <aside className="font-bold text-dark/45 dark:text-light/20 mt-10">
                                                 Synonyms:{" "}
-                                                <span className="text-accent">
-                                                    {meaning.synonyms}
-                                                </span>
+                                                {meaning.synonyms.map((syn, index) => (
+                                                    <span key={index} className="text-accent">
+                                                        {(index ? ", " : "") + syn}
+                                                    </span>
+                                                ))}
                                             </aside>
                                         )}
                                     </article>
