@@ -4,10 +4,10 @@
 
 @layer base {
     body {
-        @apply min-h-screen p-0 m-0 box-border text-dark bg-light dark:text-light dark:bg-dark;
+        @apply min-h-screen overflow-y-scroll p-0 m-0 box-border text-dark bg-light dark:text-light dark:bg-dark;
     }
     body::-webkit-scrollbar {
-        width: 10px;
+        @apply w-2 bg-light dark:bg-dark;
     }
     body::-webkit-scrollbar-thumb {
         border-radius: 2px;
