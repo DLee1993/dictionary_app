@@ -41,7 +41,7 @@ function App() {
 
                     var resultsObject = {
                         word: results[0].word,
-                        phonetic: results[0].phonetics.find((o) => o.text).text,
+                        phonetic: results[0].phonetics.find((o) => o.text)?.text,
                         meanings: results[0].meanings,
                         audio: results[0].phonetics.find((o) => o.audio)?.audio,
                         source: results[0].sourceUrls[0],
