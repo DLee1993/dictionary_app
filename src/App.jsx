@@ -73,7 +73,7 @@ function App() {
             <section className="py-10 font-sans">
                 <header className="flex justify-between items-center">
                     <a href="/dictionary_app/">
-                        <h1 className="text-lg md:text-xl font-bold uppercase text-light bg-accent p-2">
+                        <h1 className="text-lg md:text-xl font-bold uppercase text-dark">
                             wordup
                         </h1>
                     </a>
@@ -108,6 +108,7 @@ function App() {
                                         }}
                                     />
                                     <button className="bg-accent w-12 h-10 grid place-items-center hover:bg-accent/65 transition-colors">
+                                        <span className="sr-only">search</span>
                                         <svg
                                             viewBox="0 0 24 24"
                                             fill="none"
