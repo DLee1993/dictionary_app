@@ -34,8 +34,6 @@ function App() {
                     );
                     let results = await search.json();
 
-                    console.log(results);
-
                     if (!search.ok) {
                         return setSearchError(results);
                     }
@@ -72,71 +70,85 @@ function App() {
 
     return (
         <SkeletonTheme>
-            <section className="py-10 m-auto font-sans">
+            <section className="py-10 font-sans">
                 <header className="flex justify-between items-center">
                     <a href="/dictionary_app/">
-                        <h1 className="text-lg md:text-xl lg:text-2xl font-bold uppercase text-light bg-accent p-2">wordup</h1>
+                        <h1 className="text-lg md:text-xl font-bold uppercase text-light bg-accent p-2">
+                            wordup
+                        </h1>
                     </a>
                     <a href="https://github.com/DLee1993" target="_blank">
                         <p className="sr-only">github profile</p> <Github />
                     </a>
                 </header>
-                <main className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-4">
-                    <section className="relative col-span-1">
-                        <div className="sticky top-10">
-                            <fieldset className="min-h-20">
-                                <form onSubmit={wordSearch}>
-                                    <fieldset className="flex gap-x-2">
-                                        <Input
-                                            aria-label="input field"
-                                            type="text"
-                                            value={word}
-                                            onChange={(e) => setWord(e.target.value)}
-                                            label="Search for a word"
-                                            placeholder="Search for a word"
-                                            autoFocus
-                                            isClearable
-                                            onClear={() => setWord("")}
-                                            classNames={{
-                                                inputWrapper: `py-0 min-h-unit-0 h-fit dark:bg-light/5 rounded-none p-0 ${
-                                                    inputError ? "border-2 border-accent" : null
-                                                }`,
-                                                innerWrapper:
-                                                    "h-fit flex justify-center items-center rounded-none p-0",
-                                                label: "sr-only",
-                                                input: "text-base md:text-lg h-10 font-bold rounded-none px-2",
-                                                clearButton:
-                                                    "m-0 top-1/2 -translate-y-1/2 text-accent",
-                                            }}
-                                        />
-                                        <button className="bg-accent w-12 h-10 grid place-items-center hover:bg-accent/65 transition-colors">
-                                            <svg
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="w-1/2 stroke-light"
-                                            >
-                                                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                                                <g
-                                                    id="SVGRepo_tracerCarrier"
+                <main className="mt-16 m-auto max-w-3xl">
+                    <section>
+                        <fieldset className="min-h-20">
+                            <form onSubmit={wordSearch}>
+                                <fieldset className="flex gap-x-2">
+                                    <Input
+                                        aria-label="input field"
+                                        type="text"
+                                        value={word}
+                                        onChange={(e) => setWord(e.target.value)}
+                                        label="Search for a word"
+                                        placeholder="Search for a word"
+                                        autoFocus
+                                        isClearable
+                                        onClear={() => setWord("")}
+                                        classNames={{
+                                            inputWrapper: `py-0 min-h-unit-0 h-fit dark:bg-light/5 rounded-none p-0 ${
+                                                inputError ? "outline-accent" : null
+                                            }`,
+                                            innerWrapper:
+                                                "h-fit flex justify-center items-center rounded-none p-0",
+                                            label: "sr-only",
+                                            input: "text-base md:text-lg h-10 font-bold rounded-none px-2",
+                                            clearButton: "m-0 top-1/2 -translate-y-1/2 text-accent",
+                                        }}
+                                    />
+                                    <button className="bg-accent w-12 h-10 grid place-items-center hover:bg-accent/65 transition-colors">
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="w-1/2 stroke-light"
+                                        >
+                                            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                            <g
+                                                id="SVGRepo_tracerCarrier"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            ></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                {" "}
+                                                <path
+                                                    d="M16.6725 16.6412L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+                                                    strokeWidth="2"
                                                     strokeLinecap="round"
                                                     strokeLinejoin="round"
-                                                ></g>
-                                                <g id="SVGRepo_iconCarrier">
-                                                    {" "}
-                                                    <path
-                                                        d="M16.6725 16.6412L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
-                                                        strokeWidth="2"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    ></path>{" "}
-                                                </g>
-                                            </svg>
-                                        </button>
-                                    </fieldset>
-                                </form>
-                                <p className="text-accent font-bold">{inputError}</p>
-                            </fieldset>
+                                                ></path>{" "}
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </fieldset>
+                            </form>
+                            <p className="text-accent font-bold mt-1">{inputError}</p>
+                        </fieldset>
+                    </section>
+                    <section className="mt-5 md:mt-10">
+                        <div
+                            className="font-bold max-w-lg mx-auto text-center space-y-8"
+                            id="startMessage"
+                        >
+                            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-dark/50">
+                                Level up your knowledge of the english language.
+                            </h1>
+                            <p className="text-sm">
+                                To get started, type a word in the search bar and press enter.
+                            </p>
+                        </div>
+                        <section>
                             <section className="mt-5 flex flex-col justify-between">
                                 <section>
                                     <section className="flex justify-between">
@@ -180,6 +192,7 @@ function App() {
                                                     className="hover:underline"
                                                     href={searchResults?.source}
                                                     target="_blank"
+                                                    aria-label={`wiktionary link for ${searchResults?.word}`}
                                                 >
                                                     {searchResults?.source}
                                                 </a>
@@ -190,21 +203,6 @@ function App() {
                                     )}
                                 </section>
                             </section>
-                        </div>
-                    </section>
-                    <section className="mt-10 lg:mt-0 col-span-2 lg:px-10">
-                        <div
-                            className="font-bold max-w-lg mx-auto text-center space-y-8"
-                            id="startMessage"
-                        >
-                            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-dark/50">
-                                Level up your knowledge of the english language.
-                            </h1>
-                            <p className="text-sm">
-                                To get started, type a word in the search bar and press enter.
-                            </p>
-                        </div>
-                        <section>
                             <section>
                                 {searchResults
                                     ? searchResults?.meanings.map((meaning, index) => (

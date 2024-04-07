@@ -4,7 +4,7 @@ export const Github = () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="size-6 fill-dark hover:fill-accent transition-colors"
+            className="size-8 fill-dark hover:fill-accent transition-colors"
         >
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
