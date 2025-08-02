@@ -73,7 +73,9 @@ function App() {
             <section className="py-10 font-sans">
                 <header className="flex justify-between items-center">
                     <a href="/dictionary_app/" className="relative">
-                        <h1 className="relative z-50 text-lg md:text-xl font-bold uppercase text-dark">wordup</h1>
+                        <h1 className="relative z-50 text-lg md:text-xl font-bold uppercase text-dark">
+                            wordup
+                        </h1>
                         <div className="absolute top-0 left-0 w-2/5 h-full bg-accent"></div>
                     </a>
                     <a href="https://github.com/DLee1993" target="_blank">
@@ -172,7 +174,7 @@ function App() {
                                                 {audioIcon}
                                             </button>
                                             <audio
-                                                src={searchResults?.audio}
+                                                src="https://api.dictionaryapi.dev/media/pronunciations/en/hello-au.mp3"
                                                 id="audio"
                                                 onPlay={() => IconSwitch(true)}
                                                 onPause={() => IconSwitch(false)}
